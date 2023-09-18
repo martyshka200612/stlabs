@@ -1,3 +1,4 @@
+//Lab 1 Var 10
 #include <iostream>
 #include <cmath>
 #include <iomanip>
