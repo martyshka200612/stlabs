@@ -13,18 +13,18 @@ int main() {
     setlocale(LC_ALL, "Rus");
     cout << " Input n: ";
     cin >> n;
-    int *a = new int[n]; // создать в массиве n чисел
+    double *a = new  double [n]; // создать в массиве n чисел
     for (int i = 0; i < n; i++) {
         cout << "A [" << i + 1 << "]=";// ввод A[1],A[2],...,A[N] с клавиатуры
         cin >> a[i];
     }
-    int max = a[0];
-    int min = a[0];
+  int  max = a[0];
+    int  min = a[0];
     for (int i = 1; i < n; i++) {
         if (a[i] > a[max]) max = i;
         if (a[i] < a[min]) min = i;
     }
-    int tmp = a[max];//поменять местами мин и макс
+    double  tmp = a[max];//поменять местами мин и макс
     a[max] = a[min];
     a[min] = tmp;
     for (int i = 0; i < n; i++)// выводит в консоль измененный порядок элементов
@@ -75,5 +75,4 @@ int main() {
 
     return 0;
 }
-
 
