@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    const int size=3;
+    int A[size][size];
+    int i, j, summ,s1=0,s2=0,el;
+    cout <<"\nEnter the matrix elements: \n\n";
+    for (i = 0; i < size; i++)
+    {
+        for (j = 0; j < size; j++)
+        {
+            cout << "A[" << i << "][" << j << "] = ";
+            cin >> A[i][j];
+        }
+       /* {
+            el = A[i][j];
+            A[i][j] = A[size-1-j][size-1-i];
+            A[size-1-j][size-1-i] = el;
+        }*/
+    }
+    cout << "\n1) ";
+    for (i = 0; i < size; i++)
+    {
+        bool flag = false;
+        summ = 0;
+        for (j = 0; j < size; j++)
+        {
+            summ += A[i][j];
+            if(A[i][j] < 0)
+                flag = true;
+        }
+        if (flag == true)
+        {
+            cout<<"Sum of elements of the line  "<< i << " with negative element = " << summ <<"\n\n";
+        }
+    }
+    cout << "\n2) ";
+    for (i = 1; i<size-1; i++)   // параллельная диагональ ниже главной
+    {
+        for (j = 0; j<size-1; j++)
+        {
+            s1 = s1 + A[i++][j];
+        }
+    }
+    for (i = 0; i<size-1; i++)   // параллельная диагональ выше главной
+    {
+        for (j = 1; j<size; j++)
+        {
+            s2 = s2 + A[i++][j];
+        }
+    }
+    if (s1>s2) cout<<"The minimum among the sums of elements of diagonals parallel to the main diagonal of the matrix ="<<s2; else cout<<"Минимум среди сумм элементов диагоналей, параллельных главной диагонали матрицы ="<<s1;
+    return 0;
+}
+
