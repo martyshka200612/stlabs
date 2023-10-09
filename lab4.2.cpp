@@ -75,6 +75,9 @@ int main()
 
         std::cout << "Enter the string:\n";
         std::cin.getline(string, MAX, '\n');
+        if(string[0] == 'q'){
+            break;
+        }
     }
     return 0;
 }
