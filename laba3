@@ -34,28 +34,34 @@ int main()
             if(v3[i][j] < 0)
                 flag = true;
         }
-        if (flag == true)
+        if (flag == false)
         {
-            cout<<"The product of elements of the line  "<< i << " with negative element = " << z <<"\n\n";
+            cout<<"The product of elements of the line  "<< i << " with no negative element = " << z <<"\n\n";
         }
     }
     cout << "\n2) ";
 
+int max_sum = INT_MIN;
     for (i = 1; i<n-1; i++)   // параллельная диагональ ниже главной
     {
+int sum = 0;
+
         for (j = 0; j<n-i; j++)
         {
-            s1 = s1 + v3[j+i][i];
+            sum = sum + v3[j+i][i];
         }
+if (sum > max_sum){ max_sum=sum;}
     }
     for (i = 1; i<n-1; i++)   // параллельная диагональ выше главной
     {
+int sum1 = 0;
         for (j = 0; j<n-1; j++)
         {
-            s2 = s2 + v3[j][j+i];
+            sum1 = sum1 + v3[j][j+i];
         }
+if (sum1 > max_sum){ max_sum=sum1;}
     }
-    if (s1>s2) cout<<"The minimum among the sums of elements of diagonals parallel to the main diagonal of the matrix ="<<s2; else cout<<"The minimum among the sums of elements of diagonals parallel to the main diagonal of the matrix ="<<s1;
+ cout<<"The minimum among the sums of elements of diagonals parallel to the main diagonal of the matrix ="<<max_sum;
     return 0;
 }
 
