@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    ifstream fin("comm.txt");
+    ifstream fin("comm1.txt");
     ofstream fout("output1.txt");
     if (!fin.is_open()) {
         fout << "Error opening file" << endl;
@@ -15,6 +15,7 @@ int main() {
     string str;
     bool LineIsComment;
     while (getline(fin, str)) {
+        cout << str << endl;
         for (i = 0; i < str.length(); i++) {
             if (str[i] != ' ') {
                 if ((str[i] == '/') && (str[i + 1] == '/')) {
@@ -27,7 +28,7 @@ int main() {
     int groupStartedLine = 0;
     int groupCommSize = 0;
     string repeatedLine = "";
-    for (int k = 0; k < str.size(); k++) {
+    for (int k = 0; k < str.size(); ++k) {
         if (LineIsComment == true) {
             if (groupCommSize == 0) {
                 groupStartedLine = k;
@@ -36,14 +37,16 @@ int main() {
             groupCommSize++;
         } else {
             if (groupCommSize > 0) {
-                fout << "The group starts with the line " << groupStartedLine + 1;
-                fout << ", number of repeated line: " << groupCommSize << endl;
+                fout << "The group starts with the line " << groupStartedLine + 1 << endl;
+                fout << "number of repeated line: " << groupCommSize << endl;
+                fout << "text of repeated line: " << repeatedLine << endl;
                 groupCommSize = 0;
             }
         }
     }
     if (groupCommSize > 0) {
-        fout << "The group starts with the line " << groupStartedLine + 1;
-        fout << ", number of repeated line: " << groupCommSize << endl;
+        fout << "The group starts with the line " << groupStartedLine + 1 << endl;
+        fout << "number of repeated line: " << groupCommSize << endl;
+        fout << "text of repeated line: " << repeatedLine << endl;
     }
 }
