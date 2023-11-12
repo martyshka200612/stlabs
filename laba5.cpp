@@ -4,6 +4,17 @@
 #include <string>
 using namespace std;
 
+
+bool LineIsComment(const string& str) {
+        for (int i = 0; i < str.length(); i++) {
+            if (str[i] != ' ') {
+                if ((str[i] == '/') && (str[i + 1] == '/')) {
+                    return true;
+                }
+            }
+        }
+    return false;
+}
 int main() {
     ifstream fin("comm1.txt");
     ofstream fout("output1.txt");
@@ -11,42 +22,27 @@ int main() {
         fout << "Error opening file" << endl;
         return 1;
     }
-    int i;
     string str;
-    bool LineIsComment;
+    int linesCount = 0;
+    bool groupStarted = false;
+    int groupSize = 1;
     while (getline(fin, str)) {
-        cout << str << endl;
-        for (i = 0; i < str.length(); i++) {
-            if (str[i] != ' ') {
-                if ((str[i] == '/') && (str[i + 1] == '/')) {
-                    LineIsComment = true;
+        linesCount++;
+        if (!fin.eof()) {
+            if (LineIsComment(str)) {
+                if (!groupStarted) {
+                    fout << "The group starts with the line " << linesCount << endl;
+                    groupStarted = true;
+                    groupSize = 1;
+                } else {
+                    groupSize++;
+                }
+            } else {
+                if (groupStarted) {
+                    fout << "number of repeated lines: " << groupSize << endl;
+                    groupStarted = false;
                 }
             }
         }
-    }
-
-    int groupStartedLine = 0;
-    int groupCommSize = 0;
-    string repeatedLine = "";
-    for (int k = 0; k < str.size(); ++k) {
-        if (LineIsComment == true) {
-            if (groupCommSize == 0) {
-                groupStartedLine = k;
-                repeatedLine = str[k];
-            }
-            groupCommSize++;
-        } else {
-            if (groupCommSize > 0) {
-                fout << "The group starts with the line " << groupStartedLine + 1 << endl;
-                fout << "number of repeated line: " << groupCommSize << endl;
-                fout << "text of repeated line: " << repeatedLine << endl;
-                groupCommSize = 0;
-            }
-        }
-    }
-    if (groupCommSize > 0) {
-        fout << "The group starts with the line " << groupStartedLine + 1 << endl;
-        fout << "number of repeated line: " << groupCommSize << endl;
-        fout << "text of repeated line: " << repeatedLine << endl;
     }
 }
