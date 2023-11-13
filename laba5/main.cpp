@@ -28,7 +28,6 @@ int main() {
     int groupSize = 1;
     while (getline(fin, str)) {
         linesCount++;
-        if (!fin.eof()) {
             if (LineIsComment(str)) {
                 if (!groupStarted) {
                     fout << "The group starts with the line " << linesCount << endl;
@@ -44,5 +43,11 @@ int main() {
                 }
             }
         }
+    if (groupStarted) {
+        fout << "number of repeated lines: " << groupSize << endl;
+        groupStarted = false;
     }
-}
+    fin.close ();
+    fout.close();
+
+    }
