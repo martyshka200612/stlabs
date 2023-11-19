@@ -61,7 +61,10 @@ ProperFraction ProperFraction::operator/ (const ProperFraction& fraction) {
 void ProperFraction::print() {
     cout << num << "/" << denom;
 }
-
+ProperFraction ProperFraction::takecopy(const ProperFraction& copy) {
+    num = copy.num;
+    denom = copy.denom;
+}
 
 int ProperFraction::gcd(int a, int b) {
     while (b != 0) {
@@ -71,3 +74,4 @@ int ProperFraction::gcd(int a, int b) {
     }
     return a;
 }
+
