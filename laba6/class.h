@@ -22,6 +22,7 @@ public:
 
     ProperFraction operator/ (const ProperFraction& fraction);
 
+    ProperFraction takecopy (const ProperFraction& fraction);
 
     int getNumerator(){
         return num;
