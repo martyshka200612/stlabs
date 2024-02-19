@@ -1,0 +1,60 @@
+#include <iostream>
+
+int main() {
+    __int16 a1 = 0;
+    __int16 a2 = 0;
+    __int16 a3 = 0;
+    __int16 b1 = 0;
+    __int16 b2 = 0;
+    __int16 b3 = 0;
+    __int16 c1 = 0;
+    __int16 c2 = 0;
+    __int16 c3 = 0;
+    __int16 d1 = 0;
+    __int16 d2 = 0;
+    __int16 d3 = 0;
+    __int64 result = 0;
+
+    std::cout << "a1 = " << '\n';
+    std::cin >> a1;
+    std::cout << "a2 = " << '\n';
+    std::cin >> a2;
+    std::cout << "a3 = " << '\n';
+    std::cin >> a3;
+
+    std::cout << "b1 = " << '\n';
+    std::cin >> b1;
+    std::cout << "b2 = " << '\n';
+    std::cin >> b2;
+    std::cout << "b3 = " << '\n';
+    std::cin >> b3;
+
+
+    __asm
+    {
+        mov ax, a1;
+        mov bx, b1;
+        add ax, bx;
+        mov c1, ax;
+
+        mov ax, a2;
+        mov bx, b2;
+        adc ax, bx;
+        mov c2, ax;
+
+        mov ax, a3;
+        mov bx, b3;
+        adc ax, bx;
+        mov c3, ax;
+
+    }
+
+    result = ((static_cast<__int64>(c3)) << 32) + ((static_cast<__int64>(c2)) << 16) + static_cast<__int64>(c1);
+    std::cout << " Result in the decimal system = " << '\n';
+    std::cout << std::dec << result << std::endl;
+
+    std::cout << " Result in the hexadecimal system = " << '\n';
+    std::cout << std::hex << result << std::endl;
+
+
+}
