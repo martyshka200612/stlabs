@@ -1,0 +1,41 @@
+#include <iostream>
+
+int main()
+{
+    int x = 0;
+    int result = 0;
+    int resultc = 0;
+
+    std::cout << " x = " << '\n';
+    std::cin >> x;
+
+    __asm {
+        mov eax, x;
+        imul eax, x;
+        sub eax, 4;
+        imul eax, 2; eax = (x * x - 4) * 2
+
+        mov ebx, x;
+        imul ebx, x;
+        imul ebx, x;
+        imul ebx, x;
+        imul ebx, x;
+
+        add eax, ebx;
+        add eax, x;
+
+        mov ebx, x;
+        imul ebx, x;
+        imul ebx, x;
+
+        cdq
+        idiv ebx;
+        mov result, eax;
+
+    }
+    resultc = (x * x * x * x * x + 2 * (x * x - 4) + x) / (x * x * x);
+
+    std::cout << "Result by assembler :" << result << '\n';
+    std::cout << "result by c++ :" << resultc << '\n';
+
+}
