@@ -1,0 +1,49 @@
+#include <iostream>
+
+int main() {
+    int number = 0;
+    int result = 0;
+
+    std::cout << "number = ";
+    std::cin >> number;
+
+    __asm {
+        mov eax, number;
+        mov ecx, 10;
+        cdq;
+        div ecx;
+        mov ebx, edx; // ebx - last digit
+
+        mov eax, number;
+        mov ecx, 10;
+        mov edi, 0;
+
+        // Count the number of digits
+    count_digits:
+        test eax, eax;
+        jz end_count;
+
+        inc edi;
+        cdq;
+        div ecx;
+        mov edx, 10;
+        jmp count_digits;
+
+    end_count:
+
+        // Swap the first and last digits
+        mov eax, number;
+        mov ecx, 10;
+        mov ebx, 0;
+        mov edi, 1;
+        mul_loop:
+            imul edi;
+            loop mul_loop;
+            add eax, ebx;
+            mov result, eax;
+        }
+
+    std::cout << "result = " << result << '\n';
+
+    return 0;
+}
