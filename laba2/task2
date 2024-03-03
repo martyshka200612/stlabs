@@ -12,36 +12,46 @@ int main() {
         mov ecx, 10;
         cdq;
         div ecx;
-        mov ebx, edx; // ebx - last digit
+        mov ebx, edx;
 
         mov eax, number;
         mov ecx, 10;
         mov edi, 0;
 
-        // Count the number of digits
-    count_digits:
-        test eax, eax;
-        jz end_count;
+        count_digits:
+            test eax, eax;
+            jz end_count;
 
-        inc edi;
-        cdq;
-        div ecx;
-        mov edx, 10;
-        jmp count_digits;
+            inc edi;
+            cdq;
+            div ecx;
+            mov edx, 10;
+            jmp count_digits;
 
-    end_count:
+        end_count:
 
-        // Swap the first and last digits
         mov eax, number;
-        mov ecx, 10;
-        mov ebx, 0;
+        mov ecx, edi;
+
         mov edi, 1;
-        mul_loop:
-            imul edi;
-            loop mul_loop;
-            add eax, ebx;
-            mov result, eax;
-        }
+        imul edi;
+
+        sub ecx, 1;
+        mov eax, number;
+
+        mov ebx, 10;
+        mul ebx;
+
+        add eax, ecx;
+        sub eax, ebx;
+        add eax, ebx;
+
+        mov ecx, 1;
+        imul ecx, ebx;
+        sub eax, ecx;
+
+        mov result, eax;
+    }
 
     std::cout << "result = " << result << '\n';
 
