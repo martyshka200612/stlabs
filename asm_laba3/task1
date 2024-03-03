@@ -1,0 +1,43 @@
+#include <iostream>
+
+int main() {
+    int a = 0;
+    int result = 0;
+
+    std::cout << "Enter a: ";
+    std::cin >> a;
+
+    __asm {
+        mov eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        mov ecx, eax;
+
+        mov eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+        imul eax, a;
+
+        add eax, ecx;
+        mov edx, a;
+        add eax, edx;
+        mov result, eax; Сохраняем результат
+    }
+
+    std::cout << "Result: " << result << '\n';
+
+    return 0;
+}
