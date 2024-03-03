@@ -1,0 +1,26 @@
+// variant 3 
+#include <iostream>
+
+int main() {
+    int num;
+    int result = 0;
+
+    std::cout << " number = ";
+    std::cin >> num;
+
+    __asm {
+        mov eax, num;
+        xor ecx, ecx; 
+        sum:
+        mov edx, eax;
+        mov ebx, 10;
+        cdq; 
+        div ebx;
+        add ecx, edx; 
+        test eax, eax;
+        jnz sum; 
+        mov result, ecx;
+    }
+    std::cout << " result = " << result << std::endl;
+    return 0;
+}
