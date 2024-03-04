@@ -1,43 +1,34 @@
 #include <iostream>
 
 int main() {
-    int a = 0;
-    int result = 0;
+    unsigned int a = 0;
+    unsigned int result = 0;
 
-    std::cout << "Enter a: ";
+    std::cout << " a =  ";
     std::cin >> a;
 
     __asm {
-        mov eax, a;
+        mov eax, a;  
+        imul eax, eax;     
+        imul eax, eax;      
+        imul eax, eax;       
         imul eax, a;
         imul eax, a;
         imul eax, a;
         imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        mov ecx, eax;
+      
+        mov ecx, eax;      
 
-        mov eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-
-        add eax, ecx;
-        mov edx, a;
-        add eax, edx;
-        mov result, eax; Сохраняем результат
+        mov eax, a;          
+        imul eax, eax;      
+        imul eax, eax;      
+        imul eax, eax;       
+        add eax, ecx;       
+        add eax, a;          
+        mov result, eax;
     }
 
-    std::cout << "Result: " << result << '\n';
+    std::cout << "result: " << result << '\n';
 
     return 0;
 }
