@@ -1,0 +1,43 @@
+#include <iostream>
+
+int main() {
+    int numerator, denominator, numerator1, denominator1, nod;
+
+    std::cout << "numerator = ";
+    std::cin >> numerator;
+    std::cout << "denominator = ";
+    std::cin >> denominator;
+
+    __asm {
+        mov eax, numerator;     
+        mov ebx, denominator;   
+
+    gcd_loop:
+            test ebx, ebx; 
+            jz gcd_done; 
+
+            xor edx, edx; 
+            div ebx; 
+
+            mov eax, ebx;
+            mov ebx, edx;
+
+            jmp gcd_loop; 
+
+    gcd_done :
+            mov nod, eax;          
+
+            mov eax, numerator;
+            cdq;
+            idiv nod;
+            mov numerator1, eax;
+            mov eax, denominator;
+            cdq;
+            idiv nod;
+            mov denominator1, eax;
+    }
+
+    std::cout << "simplified fraction: " << numerator1 << "/" << denominator1 << std::endl;
+
+    return 0;
+}
