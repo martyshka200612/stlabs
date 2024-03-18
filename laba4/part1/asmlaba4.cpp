@@ -1,15 +1,14 @@
 #include <iostream>
-
-extern "C" int procedure(int);
+using namespace std;
+extern "C" int procedure1(int);
 
 int main() {
 
 	int x;
-	std::cout << "Enter x: ";
-	std:: cin >> x;
+	cout << "Enter x: ";
+	cin >> x;
 
-	std::cout << "Result by c++ : " <<  << '\n';
-	std::cout << "Result by assembler : " << procedure(x) << '\n';
-	
-	return 0;
+	cout << "Result by assembler : " << procedure1(x) << '\n';
+	cout << "Result by c++ : " << (x^5 + 2 * (x^2 - 4) + x) / (x^3) << '\n';
+
 }
