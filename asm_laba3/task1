@@ -2,33 +2,33 @@
 
 int main() {
     unsigned int a = 0;
-    unsigned int result = 0;
+    unsigned long long result = 0;
 
     std::cout << " a =  ";
     std::cin >> a;
 
     __asm {
-        mov eax, a;  
-        imul eax, eax;     
-        imul eax, eax;      
-        imul eax, eax;       
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-        imul eax, a;
-      
-        mov ecx, eax;      
+        mov eax, a;            
+        imul eax, eax;        
+        imul eax, eax;         
+        imul eax, eax;        
+        imul eax, dword ptr [a]; 
+        imul eax, dword ptr [a]; 
+        imul eax, dword ptr [a]; 
+        imul eax, dword ptr [a]; 
 
-        mov eax, a;          
-        imul eax, eax;      
-        imul eax, eax;      
-        imul eax, eax;       
-        add eax, ecx;       
-        add eax, a;          
-        mov result, eax;
+        mov ecx, eax;        
+
+        mov eax, dword ptr [a];
+        imul eax, eax;     
+        imul eax, eax;         
+        imul eax, eax;         
+        add eax, ecx;        
+        add eax, dword ptr [a];
+        mov dword ptr [result],eax;
+        mov dword ptr [ result + 4], edx; 
     }
 
     std::cout << "result: " << result << '\n';
 
     return 0;
-}
