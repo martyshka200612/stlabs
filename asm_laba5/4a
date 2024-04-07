@@ -1,0 +1,40 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    float X = 0;
+    float n = 100000;
+    float step = 2 * 3.1415926535 / n;
+    float integralSum = 0;
+
+    __asm
+    {
+        mov ecx, 100000
+        loop1:
+
+        fld X
+            fld X
+            fmul
+
+            fld X
+            fld step
+            fadd
+            fst X
+
+            fsin
+            fadd
+
+            fmul step
+
+            fld integralSum
+            fadd
+            fstp integralSum
+
+            loop loop1
+    }
+
+    cout << integralSum;
+    return 0;
+}
