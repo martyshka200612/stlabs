@@ -23,8 +23,9 @@ class GameLogic:
             if self.check_winner(row, col, sub_row, sub_col):
                 self.board.update_sub_board(row, col, self.current_player)
                 if self.check_winner_main_board():
+                    winner_name = self.board.main_window.get_player_name(self.current_player)
                     QMessageBox.information(self.board.main_window, "Game Over",
-                                            f"{self.current_player} wins the game!")
+                                            f"{winner_name} ({self.current_player}) wins the game!")
                     self.board.reset_board()
                     return
             elif self.check_draw(row, col):
