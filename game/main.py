@@ -1,6 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QGridLayout, QWidget, QPushButton, QMessageBox, QLabel, \
-    QLineEdit, QVBoxLayout, QAction, QColorDialog, QFileDialog, QMenu
+from PyQt5.QtWidgets import QApplication, QMainWindow, QGridLayout, QWidget, QPushButton, QMessageBox, QLabel, QLineEdit, QVBoxLayout, QAction, QColorDialog, QFileDialog, QMenu
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QFont
 from player_panel import PlayerPanel
@@ -73,6 +72,12 @@ class SuperTicTacToe(QMainWindow):
 
     def update_current_player_label(self):
         self.current_player_label.setText(f"Current Player: {self.game_logic.current_player}")
+
+    def get_player_name(self, player):
+        if player == "X":
+            return self.player1_panel.name_edit.text()
+        else:
+            return self.player2_panel.name_edit.text()
 
 
 if __name__ == "__main__":
