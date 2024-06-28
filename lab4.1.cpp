@@ -1,4 +1,4 @@
-//Lab 4 Var 10 Point 1
+AHHAHAHAHAHAHAHAHAHAHAAHHHAHAHA//Lab 4 Var 10 Point 1
 #include <iostream>
 #include <cstring>
 using namespace std;
